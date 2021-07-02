@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shop_app/models/statemangement/provider/index_btm_navigation_saver_provider.dart';
+import 'package:shop_app/view_models/provider/all_providers.dart';
 
-import 'cart_route.dart';
-import 'favorites_route.dart';
-import 'home_route.dart';
+import 'user_profile_routes/account_route.dart';
+import 'cart_routes/cart_route.dart';
+import 'favorite_routes/favorites_route.dart';
+import 'home_routes/home_route.dart';
 class ItemsBottomNavigation extends StatelessWidget {
   static const List<Widget> _pages = <Widget>[
     HomeRoute(),
     FavoritesRoute(appBarTitle: "Your Favorites"),
-    CartRoute(appBarTitle: "Your Purchases"),
+    Account(),
+    CartRoute(appBarTitle: "Cart"),
+
   ];
   int currentIndex = 0;
   @override
@@ -43,11 +46,19 @@ class ItemsBottomNavigation extends StatelessWidget {
               ),
               BottomNavigationBarItem(
                 icon: Icon(
-                  Icons.shopping_cart,
+                  Icons.account_circle,
                   color: value.index == 2 ? Color(0xffF9A075) : Colors.black,
+                ),
+                label: "Account",
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.shopping_cart,
+                  color: value.index == 3 ? Color(0xffF9A075) : Colors.black,
                 ),
                 label: "Cart",
               ),
+
             ],
           ),
           body: _pages[value.index],

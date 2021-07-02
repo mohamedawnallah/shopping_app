@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:shop_app/constants/constants.dart';
-import 'package:shop_app/enums/categories.dart';
+import 'package:shop_app/config/constants.dart';
 import 'package:shop_app/main.dart';
-import 'package:shop_app/routes/animated_splash_route.dart';
-import 'package:shop_app/routes/fourth_nav_route.dart';
+import 'package:shop_app/routes/splash_route/animated_splash_route.dart';
 import 'package:shop_app/routes/items_btm_navigation_route.dart';
-import 'package:shop_app/routes/routes.dart';
-import 'package:shop_app/routes/third_nav_categories_route.dart';
+import 'package:shop_app/routes/cart_routes/review_payment_route.dart';
+import 'package:shop_app/routes/all_routes.dart';
 
 class RouteGenerator {
   static const String homeRoute = "/";
@@ -32,9 +30,8 @@ class RouteGenerator {
 
   static const String secondNavCategories = "/second_nav_categories_route";
 
-  static const String thirdNavCategories = "/third_nav_categories_route";
+  static const String reviewPaymentRoute = "/review_payment_route";
 
-  static const String fourthNavCategories = "/fourth_nav_categories_route";
 
   static Route<dynamic> generateRoute(RouteSettings? settings) {
     switch (settings!.name) {
@@ -59,10 +56,6 @@ class RouteGenerator {
             appBarTitle: "Cart",
           ),
         );
-      case checkOutRoute:
-        return MaterialPageRoute(
-          builder: (_) => CheckOutRoute(appBarTitle: "Checkout"),
-        );
 
       case favoritesRoute:
         return MaterialPageRoute(
@@ -79,13 +72,11 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => ItemsBottomNavigation());
       case secondNavCategories:
         return MaterialPageRoute(builder: (_) => SecondNavCategoriesRoute());
-      case thirdNavCategories:
-        return MaterialPageRoute(builder: (_) => ThirdNavCategories());
-      case fourthNavCategories:
-        return MaterialPageRoute(builder: (_) => FourthNavCategories());
 
       case animatedSplashRoute:
         return MaterialPageRoute(builder: (_) => AnimatedSplashScreen());
+      case reviewPaymentRoute:
+        return MaterialPageRoute(builder: (_) => ReviewPaymentRoute());
 
       default:
         throw FormatException("Route Not Found");
